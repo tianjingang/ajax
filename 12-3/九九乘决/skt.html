@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+   姓名：<input type="text" id="name" onblur="checkName()"><span id='showname'></span></br>
+   
+   密码：<input type="password" id="password"></br>
+   性别：<input type="radio" id="sex" value="女">女<input type="radio" id="sex" value="男">男</br>
+   部门：<select>
+         <option value="">财政</option>
+          <option value="">人事</option>
+          </select></br>
+   
+   简介：<textarea rows="10" cols="30" id="jianli"></textarea></br>
+   <input type="button" value="按钮" onclick="checkBut()">
+   <input type="submit" value="提交"></br>
+
+
+
+
+</body>
+</html>
+　　  <script>
+　　function checkName(){
+　　	var name=document.getElementById("name").value;
+　　	if(name==""){
+　　		document.getElementById("showname").innerHTML="<font color='red'>用户名不能为空</font>";
+　　		return false;		
+　　	}else{
+　　		document.getElementById("showname").innerHTML="";
+　　		return true;
+　　	}
+　　}
+  </script>

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+</head>
+<body>
+ <form action="in.php" method="post" onsubmit="return checkall()">
+     <h1>用户信息添加</h1>
+     <table>
+         <tr>
+             <td>姓名</td>
+             <td><input type="text" id="username" name="username" onblur="checkuser()"/><span id="showuser"></span></td>
+         </tr>
+         <tr>
+             <td>邮箱</td>
+             <td><input type="text" id="email" name="email" onblur="checkemail()"/><span id="showemail"></span></td>
+         </tr>
+         <tr>
+             <td>手机号</td>
+             <td><input type="text" id="phone" name="phone" /></td>
+         </tr>
+         <tr>
+             <td>性别</td>
+             <td><input type="radio" name="sex" value="女"/>女
+                 <input type="radio"  name="sex" value="男"/>男
+                 <span id="showsex"></span></td>
+         </tr>
+         <tr>
+             <td><input type="submit" value="提交"/></td>
+             <td><input type="reset" value="重置"/></td>
+         </tr>
+     </table>
+
+ </form>
+  <script>
+      //自定义
+      function $(id){
+          return document.getElementById(id);
+      }
+      //验证用户名
+      function checkuser(){
+          var user=$('username').value;
+          if(user==''){
+              $('showuser').innerHTML="用户名不能为空";
+              $('showuser').style.color="red";
+              return false;
+          }
+          else{
+              $('showuser').innerHTML="正确";
+              return true;
+          }
+      }
+      //验证邮箱
+      function checkemail(){
+          var email=$('email').value;
+          if(email==''){
+              $('showemail').innerHTML="邮箱不能为空";
+              $('showemail').style.color="red";
+              return false;
+          }
+          else{
+              $('showemail').innerHTML="正确";
+              return true;
+          }
+      }
+      function checkall(){
+          //验证性别
+          var sex=document.getElementsByName('sex');
+          var str='';
+          for(var i=0;i<sex.length;i++){
+              if(sex[i].ch )
+          }
+          if(checkuser()&checkemail()){
+              return true;
+
+          }
+          else{
+              return false;
+          }
+      }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+<meta charset="utf-8">
+<h3>1409phpE点名表</h3>
+<div id='div1' style="border: 2px solid red;width: 160px;height: 200px; text-align: center;line-height: 200px;font-size: 30px;color: red" ></div>
+<input type="button" value="开始" onclick="lick()" />
+<script>
+    function lick(){
+        var arr=['赵越','钱钱','孙膑','周原','李明','王博'];
+        var index=parseInt(Math.random()*arr.length);
+        document.getElementById('div1').innerHTML=arr[index];
+    }
+
+</script>

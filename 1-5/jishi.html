@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>计时器</h1>
+    <div id="div1" style="border: 2px solid blue;height: 150px;width: 170px;"></div>
+    <p><button onclick="start()">开始计时</button><button onclick="over()">结束计时</button></p>
+    <script>
+        var num=0;
+        function count(){
+            document.getElementById('div1').innerHTML=num;
+            num=num+1;
+        }
+        function start(){
+            t=setInterval('count()',100);
+        }
+        function over(){
+            clearInterval(t);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+</head>
+<body>
+     <form action="in.php" method="post" onsubmit="return checkAll()">
+         <h1>欢迎注册学生信息</h1>
+         <table border="1">
+             <tr>
+                 <td>姓名</td>
+                 <td><input type="text" name="user" id="user" onblur="checkuser()"/><span id="showuser"></span></td>
+             </tr>
+             <tr>
+                 <td>密码</td>
+                 <td><input type="password" name="pwd" id="pwd" onblur="checkpwd()"/><span id="showpwd"></span></td>
+             </tr>
+             <tr>
+                 <td>确认密码</td>
+                 <td><input type="password" name="que" id="que" onblur="checkque()"/><span id="showque"></span></td>
+             </tr>
+             <tr>
+                 <td>性别</td>
+                 <td><input type="radio" name="sex" value="男"/>男
+                     <input type="radio" name="sex" value="女"/>女
+                     <span id="showsex"></span>
+                 </td>
+             </tr>
+             <tr>
+                 <td>邮箱</td>
+                 <td><input type="text" name="email" id="email" onblur="checkemail()"/><span id="showemail"></span></td>
+             </tr>
+             <tr>
+                 <td>城市</td>
+                 <td><select name="city" onchange="checkcity()">
+                     <option value="">请选择</option>
+                     <option value="北京">北京</option>
+                     <option value="上海">上海</option>
+                     <option value="广州">广州</option>
+                 </select><span id="showcity"></span></td>
+             </tr>
+             <tr>
+                 <td>学院</td>
+                 <td><input type="text" name="xi" id="xi" onblur="checkxi()"/><span id="showxi"></span></td>
+             </tr>
+             <tr>
+                 <td>课程名称</td>
+                 <td><input type="text" name="cheng" id="cheng" onblur="checkcheng()"/><span id="showcheng"></span></td>
+             </tr>
+             <tr>
+                 <td>自我介绍</td>
+                 <td><textarea rows="5" cols="10" name="my" id="my" onkeyup="checkmy()"></textarea><span id="showmy"></span></td>
+             </tr>
+             <tr>
+                 <td><input type="submit" value="登录"/></td>
+                 <td><input type="reset" value="重置"/></td>
+             </tr>
+         </table>
+     </form>
+<script type="text/javascript">
+    //自定义函数
+    function $(id){
+        return document.getElementById(id);
+    }
+    //验证姓名
+    function checkuser(){
+        var user=$('user').value;
+        if(user==''){
+            $('showuser').innerHTML='姓名不能为空';
+            $('showuser').style.color='red';
+            return false;
+        }
+        else{
+            $('showuser').innerHTML='对';
+            $('showuser').style.color='red';
+            return true;
+        }
+    }
+    //验证密码
+    function checkpwd(){
+        var pwd=$('pwd').value;
+        if(pwd==''){
+            $('showpwd').innerHTML='密码不能为空';
+            $('showpwd').style.color='red';
+            return false;
+        }
+        else{
+            $('showpwd').innerHTML='对';
+            $('showpwd').style.color='red';
+            return true;
+        }
+    }
+    //验证确认密码
+    function checkque(){
+        var que=$('que').value;
+        if(que==''){
+            $('showque').innerHTML='确认密码不能为空';
+            $('showque').style.color='red';
+            return false;
+        }
+        else{
+            var pwd=$('pwd').value;
+            var que=$('que').value;
+            if(pwd!=que){
+                $('showque').innerHTML='确认密码和密码不一致';
+                $('showque').style.color='red';
+                return false;
+            }
+            else{
+                $('showque').innerHTML='对';
+                $('showque').style.color='red';
+                return true;
+            }
+        }
+    }
+    //验证邮箱
+    function checkemail(){
+        var email=$('email').value;
+        if(email==''){
+            $('showemail').innerHTML='邮箱不能为空';
+            $('showemail').style.color='red';
+            return false;
+        }
+        else{
+            $('showemail').innerHTML='对';
+            $('showemail').style.color='red';
+            return true;
+        }
+    }
+    //验证城市
+    function checkcity(){
+        var city=document.getElementsByName('city')[0].value;
+        if(city==''){
+            showcity.innerHTML='城市不能为空';
+            showcity.style.color='red';
+            return false;
+        }
+        else{
+            showcity.innerHTML='对';
+            showcity.style.color='red';
+            return true;
+        }
+    }
+    //验证学院
+    function checkxi(){
+        var xi=$('xi').value;
+        if(xi==''){
+            $('showxi').innerHTML='学院不能为空';
+            $('showxi').style.color='red';
+            return false;
+        }
+        else{
+            $('showxi').innerHTML='对';
+            $('showxi').style.color='red';
+            return true;
+        }
+    }
+
+    //验证课程名称
+    function checkcheng(){
+        var cheng=$('cheng').value;
+        if(cheng==''){
+            $('showcheng').innerHTML='课程名称不能为空';
+            $('showcheng').style.color='red';
+            return false;
+        }
+        else{
+            $('showcheng').innerHTML='对';
+            $('showcheng').style.color='red';
+            return true;
+        }
+    }
+    //验证简介
+    function checkmy(){
+        var my=$('my').value;
+        if(my==''){
+            $('showmy').innerHTML='简介不能为空';
+            $('showmy').style.color='red';
+            return false;
+        }
+        else{
+            var my=$('my').value;
+            var long=my.length;
+            if(long>30){
+                $('showmy').innerHTML='简介不能超过30个字';
+                $('showmy').style.color='red';
+                return false;
+            }
+            else{
+                  var i=30-long;
+                $('showmy').innerHTML="还剩下"+i+"个字";
+                return true;
+
+            }
+        }
+    }
+
+
+
+    //验证所有
+    function checkAll(){
+         //验证性别
+        var sex=document.getElementsByName('sex');
+        var str=0;
+        for(var i=0;i<sex.length;i++){
+            if(sex[i].checked==true){
+                str=str+1;
+            }
+        }
+        if(str<1){
+            $('showsex').innerHTML='性别不能为空';
+            $('showsex').style.color='red';
+            return false;
+        }
+        else{
+            $('showsex').innerHTML='对';
+            $('showsex').style.color='red';
+
+
+        }
+        if(checkuser()&checkpwd()&checkque()&checkemail()&checkcity()&checkxi()&checkcheng()&checkmy()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

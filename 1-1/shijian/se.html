@@ -1,0 +1,14 @@
+<meta charset="utf-8">
+请选择背景颜色:<select id="date" onchange="fun()">
+    <option value="">请选择</option>
+    <option value="yellow">黄色</option>
+    <option value="red">红色</option>
+    <option value="blue">蓝色</option>
+</select>
+<script>
+    function fun(){
+        var i=document.getElementById("date").value;
+        document.bgColor=i;
+
+    }
+</script>

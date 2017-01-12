@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<input type="text" id="one">
+<select id="yunsuan">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+</select>
+<input type="text" id="twe">=<input type="text" id="san">
+<input type="button" value="计算" onclick="fun()">
+<script type="text/javascript">
+    function fun(){
+        var one=parseFloat(document.getElementById('one').value)
+        var twe=parseFloat(document.getElementById('twe').value)
+        var yunsuan=document.getElementById('yunsuan').value
+        var san=document.getElementById('san')
+        switch(yunsuan){
+            case "+" : san.value=one+twe;break;
+            case "-" : san.value=one-twe;break;
+            case "*" : san.value=one*twe;break;
+            case "/" : san.value=one/twe;break;
+        }
+    }
+</script>
+
+
+
+
+
+</body>
+</html>

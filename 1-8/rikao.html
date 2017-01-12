@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <script src="pub.js"></script>
+</head>
+<body>
+<form action="in.php" method="post" onsubmit="return checkAll()">
+    <table border="1">
+        <tr>
+            <td>用户名</td>
+            <td><input type="text" name="username" onblur="checkuser(this)"/><span name="sp1"></span></td>
+        </tr>
+        <tr>
+            <td>密码</td>
+            <td><input type="password" name="pwd" onblur="checkpwd(this)"/><span name="sp2"></span></td>
+        </tr>
+        <tr>
+            <td>手机号</td>
+            <td><input type="text" name="tel" onblur="checktel(this)"/><span name="sp3"></span></td>
+        </tr>
+        <tr>
+            <td>邮箱</td>
+            <td><input type="text" name="email" onblur="checkemail(this)"/><span name="sp4"></span></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="注册"/></td>
+            <td></td>
+        </tr>
+    </table>
+</form>
+<script>
+    function checkuser(obj){
+        var username=obj.value;
+        var reg=/^\D\w{5,}$/i;
+        if(reg.test(username)){
+            $('sp1').innerHTML="对";
+            $('sp1').style.color="red";
+            return true;
+        }
+        else{
+            $('sp1').innerHTML="用户名必须是6位以上的数字字母下划线 不能以数字开头";
+            $('sp1').style.color="red";
+            return false;
+        }
+    }
+   function checkpwd(obj){
+       var pwd=obj.value;
+       var reg=/^[0-9a-zA-Z]{6,}$/;
+       if(!reg.test(pwd)){
+           $('sp2').innerHTML="密码必须是6位以上的数字字母下划线";
+           $('sp2').style.color="red";
+           return false;
+       }
+       else{
+           $('sp2').innerHTML="对";
+           $('sp2').style.color="red";
+           return true;
+       }
+   }
+   function checktel(obj){
+       var tel=obj.value;
+       var reg=/^\d{11}$/;
+       if(!reg.test(tel)){
+           $('sp3').innerHTML="必须为11位纯数字";
+           $('sp3').style.color="red";
+           return false;
+       }
+       else{
+           $('sp3').innerHTML="对";
+           $('sp3').style.color="red";
+           return true;
+       }
+
+   }
+   function checkemail(obj){
+       var email=obj.value;
+       var reg=/^\w+@\w+(\.)(com|net|css)$/i;
+       if(!reg.test(email)){
+           $('sp4').innerHTML="邮箱的格式如234@qq.com";
+           $('sp4').style.color="red";
+           return false;
+       }
+       else{
+           $('sp4').innerHTML="对";
+           $('sp4').style.color="red";
+           return true;
+       }
+
+   }
+   function checkAll(){
+        if(checkuser($('username'))&checkpwd($('pwd'))&checktel($('tel'))&checkemail($('email'))){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

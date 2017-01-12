@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <script src="yong.js"></script>
+</head>
+<body>
+  <form action="cin.php" method="post" onsubmit="return checkall()">
+      <table>
+          <tr>
+              <td>账号:</td>
+              <td><input type="text" name="num" onblur="checknum(this)"/><span name="sp1"></span></td>
+          </tr>
+          <tr>
+              <td>密码:</td>
+              <td><input type="password" name="pwd" onblur="checkpwd(this)"/><span name="sp2"></span></td>
+          </tr>
+          <tr>
+              <td>电话:</td>
+              <td><input type="text" name="tel" onblur="checktel(this)"/><span name="sp3"></span></td>
+          </tr>
+          <tr>
+              <td>手机:</td>
+              <td><input type="text" name="phone" onblur="checkphone(this)"/><span name="sp4"></span></td>
+          </tr>
+          <tr>
+              <td>IP:</td>
+              <td><input type="text" name="IP" onblur="checkIP(this)"/><span name="sp5"></span></td>
+          </tr>
+          <tr>
+              <td>URL:</td>
+              <td><input type="text" name="URL" onblur="checkURL(this)"/><span name="sp6"></span></td>
+          </tr>
+          <tr>
+              <td>电子邮箱:</td>
+              <td><input type="text" name="email" onblur="checkemail(this)"/><span name="sp7"></span></td>
+          </tr>
+          <tr>
+              <td>中文姓名</td>
+              <td><input type="text" name="user" onblur="checkuser(this)"/><span name="sp8"></span></td>
+          </tr>
+          <tr>
+              <td>身份证号码</td>
+              <td><input type="text" name="sum" onblur="checksum(this)"/><span name="sp9"></span></td>
+          </tr>
+          <tr>
+              <td>数字验证码</td>
+              <td><input type="text" name="math" onblur="checkmath(this)"/><span name="sp10"></span></td>
+          </tr>
+          <tr>
+              <td>自定义验证规则数字</td>
+              <td><input type="text" name="rule" onblur="checkrule(this)"/><span name="sp11"></span></td>
+          </tr>
+          <tr>
+              <td><input type="submit" value="登录"/></td>
+              <td><input type="reset" value="重置"/></td>
+          </tr>
+      </table>
+  </form>
+<script>
+    //验证账号
+    function checknum(obj){
+        var num=$('num').value;
+        if(num==''){
+            $('sp1').innerHTML="不能为空";
+            $('sp1').style.color="red";
+            return false;
+        }
+        else{
+            $('sp1').innerHTML="ok";
+            $('sp1').style.color="red";
+            return true;
+        }
+
+    }
+    //验证密码
+    function checkpwd(obj){
+        var pwd=$('pwd').value;
+        if(pwd==''){
+            $('sp2').innerHTML="不能为空";
+            $('sp2').style.color="red";
+            return false;
+        }
+        else{
+            $('sp2').innerHTML="ok";
+            $('sp2').style.color="red";
+            return true;
+        }
+
+    }
+    //验证电话
+    function checktel(obj){
+        var tel=$('tel').value;
+        if(tel==''){
+            $('sp3').innerHTML="不能为空";
+            $('sp3').style.color="red";
+            return false;
+        }
+        else{
+            var tel=$('tel').value;
+            var tag=/^(\d{3}-\d{8})$/;
+            if(!tag.test(tel)){
+                $('sp3').innerHTML="格式不正确";
+                $('sp3').style.color="red";
+                return false;
+            }
+            else{
+                $('sp3').innerHTML="ok";
+                $('sp3').style.color="red";
+                return true;
+            }
+            return true;
+        }
+
+    }
+    //验证手机
+    function checkphone(obj){
+        var phone=$('phone').value;
+        if(phone==''){
+            $('sp4').innerHTML="不能为空";
+            $('sp4').style.color="red";
+            return false;
+        }
+        else{
+            var phone=obj.value;
+            var tag=/^1[358]\d{9}$/;
+            if(!tag.test(phone)){
+                $('sp4').innerHTML="格式不正确";
+                $('sp4').style.color="red";
+                return false;
+            }
+            else{
+                $('sp4').innerHTML="ok";
+                $('sp4').style.color="red";
+                return true;
+            }
+            return true;
+        }
+
+    }
+    //验证IP
+    function checkIP(obj){
+        var IP=$('IP').value;
+        if(IP==''){
+            $('sp5').innerHTML="不能为空";
+            $('sp5').style.color="red";
+            return false;
+        }
+        else{
+            var IP=obj.value;
+            var tag=/^(\d{3}\.\d{3}\.\d{1}\.\d{1})$/;
+            if(!tag.test(IP)){
+                $('sp5').innerHTML="格式不正确";
+                $('sp5').style.color="red";
+                return false;
+            }
+            else{
+                $('sp5').innerHTML="ok";
+                $('sp5').style.color="red";
+                return true;
+            }
+            return true;
+        }
+
+    }
+    //验证URL
+    function checkURL(obj){
+        var URL=$('URL').value;
+        if(URL==''){
+            $('sp6').innerHTML="不能为空";
+            $('sp6').style.color="red";
+            return false;
+        }
+        else{
+            var URL=obj.value;
+            var tag=/^(http:\/\/\w+.(com|net|css))$/;
+            if(!tag.test(URL)){
+                $('sp6').innerHTML="格式不正确";
+                $('sp6').style.color="red";
+                return false;
+            }
+            else{
+                $('sp6').innerHTML="ok";
+                $('sp6').style.color="red";
+                return true;
+            }
+            return true;
+        }
+
+    }
+    //验证邮箱
+    function checkemail(obj){
+        var email=$('email').value;
+        if(email==''){
+            $('sp7').innerHTML="不能为空";
+            $('sp7').style.color="red";
+            return false;
+        }
+        else{
+            var email=obj.value;
+            var tag=/^(\w+@\d+\.(com|net|css))$/;
+            if(!tag.test(email)){
+                $('sp7').innerHTML="格式不正确";
+                $('sp7').style.color="red";
+                return false;
+            }
+            else{
+                $('sp7').innerHTML="ok";
+                $('sp7').style.color="red";
+                return true;
+            }
+            return true;
+        }
+
+    }
+    //验证中文姓名
+    function checkuser(obj){
+        var user=$('user').value;
+        if(user==''){
+            $('sp8').innerHTML="不能为空";
+            $('sp8').style.color="red";
+            return false;
+        }
+        else{
+            var user=obj.value;
+            var tag=/^[\u4e00-\u9fa5]{2,3}$/;
+            if(!tag.test(user)){
+                $('sp8').innerHTML="格式不正确";
+                $('sp8').style.color="red";
+                return false;
+            }
+            else{
+                $('sp8').innerHTML="ok";
+                $('sp8').style.color="red";
+                return true;
+            }
+            return true;
+        }
+
+    }
+    //验证身份证号码
+    function checksum(obj){
+        var sum=$('sum').value;
+        if(sum==''){
+            $('sp9').innerHTML="不能为空";
+            $('sp9').style.color="red";
+            return false;
+        }
+        else{
+            var sum=obj.value;
+            var tag=/^(\d{15}|\d{18})$/;
+            if(!tag.test(sum)){
+                $('sp9').innerHTML="格式不正确";
+                $('sp9').style.color="red";
+                return false;
+            }
+            else{
+                $('sp9').innerHTML="ok";
+                $('sp9').style.color="red";
+                return true;
+            }
+            return true;
+        }
+
+    }
+    //验证数字验证码
+    function checkmath(obj){
+        var math=$('math').value;
+        if(math==''){
+            $('sp10').innerHTML="不能为空";
+            $('sp10').style.color="red";
+            return false;
+        }
+        else{
+            var math=obj.value;
+            var tag=/^(\d{15}|\d{18})$/;
+            if(!tag.test(math)){
+                $('sp10').innerHTML="格式不正确";
+                $('sp10').style.color="red";
+                return false;
+            }
+            else{
+                $('sp10').innerHTML="ok";
+                $('sp10').style.color="red";
+                return true;
+            }
+            return true;
+        }
+
+    }
+    //验证自定义验证规则数字
+    function checkrule(obj){
+        var rule=$('rule').value;
+        if(rule==''){
+            $('sp11').innerHTML="不能为空";
+            $('sp11').style.color="red";
+            return false;
+        }
+        else{
+            var rule=obj.value;
+            var tag=/^(\d{15}|\d{18})$/;
+            if(!tag.test(rule)){
+                $('sp11').innerHTML="格式不正确";
+                $('sp11').style.color="red";
+                return false;
+            }
+            else{
+                $('sp11').innerHTML="ok";
+                $('sp11').style.color="red";
+                return true;
+            }
+            return true;
+        }
+
+    }
+    //验证表单提交
+  function checkall(){
+      if(checknum($('num'))&checkpwd($('pwd'))&checktel($('tel'))&checkphone($('phone'))&checkIP($('IP'))&checkURL($('URL'))&checkemail($('email'))&checkuser($('user'))&checksum($('sum'))&checkmath($('math'))&checkrule($('rule'))){
+          return true;
+      }
+      else{
+          return false;
+      }
+  }
+</script>
+</body>
+</html>

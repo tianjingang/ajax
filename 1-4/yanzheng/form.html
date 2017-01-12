@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+</head>
+<body>
+ <form action="in.php" method="post" onsubmit="return checkall()">
+     <table>
+         <tr>
+             <td>用户名</td>
+             <td><input type="text" id="username" name="username" onblur="checkusername()"/><span id="showusername"></span></td>
+         </tr>
+         <tr>
+             <td>密码</td>
+             <td><input type="password" id="pwd" name="pwd" onblur="checkpwd()"/><span id="showpwd"></span></td>
+         </tr>
+         <tr>
+             <td>性别</td>
+             <td><input type="radio" name="sex" value="男"/>男
+                 <input type="radio" name="sex" value="女"/>女
+                 <span id="showsex"></span>
+             </td>
+         </tr>
+         <tr>
+             <td>部门</td>
+             <td><select name="apart" onchange="checkapart()">
+                 <option value="">请选择</option>
+                 <option value="组织部">组织部</option>
+                 <option value="卫生部">卫生部</option>
+                 <option value="后勤部">后勤部</option>
+             </select>
+                 <span id="showapart"></span></td>
+         </tr>
+         <tr>
+             <td>验证码</td>
+             <td>
+                 <input type="text"  id="yanzheng" onblur="checkA()"/>
+                 <input type="text" id="num"/>
+                 <input type="button" onclick="checkzheng()" value="获取验证码"/>
+                 <span id="showyanzheng"></span>
+             </td>
+         </tr>
+         <tr>
+             <td>简介</td>
+             <td><textarea rows="5" cols="10" id="my" name="my" onkeyup="checkmy()"></textarea> <span id="showmy"></span></td>
+         </tr>
+         <tr>
+             <td><input type="submit" value="提交"/></td>
+             <td><input type="reset" value="重置"/></td>
+         </tr>
+     </table>
+ </form>
+<script type="text/javascript">
+    //自定义函数
+    function $(id){
+        return document.getElementById(id);
+    }
+    //验证用户名
+    function checkusername(){
+        var user=$('username').value;
+        if(user==''){
+            $('showusername').innerHTML="用户名不能为空";
+            $('showusername').style.color="red";
+            return false;
+        }
+        else{
+            $('showusername').innerHTML="正确";
+            $('showusername').style.color="red";
+            return true;
+        }
+    }
+    //验证密码
+    function checkpwd(){
+        var pwd=$('pwd').value;
+        if(pwd==''){
+            $('showpwd').innerHTML="密码不能为空";
+            $('showpwd').style.color="red";
+            return false;
+        }
+        else{
+            $('showpwd').innerHTML="正确";
+            $('showpwd').style.color="red";
+            return true;
+        }
+    }
+    //验证部门
+    function checkapart(){
+        var apart=document.getElementsByName('apart')[0].value;
+        if(apart==''){
+            $('showapart').innerHTML="部门不能为空";
+            $('showapart').style.color="red";
+            return false;
+        }
+        else{
+            $('showapart').innerHTML="正确";
+            $('showapart').style.color="red";
+            return true;
+        }
+    }
+   //获取验证码
+    function checkzheng(){
+        var str='';
+        for( var i=1;i<=4;i++){
+            str = str + parseInt(Math.random()*9);
+            document.getElementById('num').value=str;
+            document.getElementById('num').style.color='red';
+       }
+    }
+    //验证验证码
+    function checkA() {
+        var sp1=document.getElementById('yanzheng').value;
+        var num=$('num').value;
+        if(sp1==''){
+            $('showyanzheng').innerHTML="验证码不能为空";
+            $('showyanzheng').style.color="red";
+            return false;
+        }else{
+            if( num!= sp1){
+                $('showyanzheng').innerHTML="验证码和获取验证码不一致";
+                $('showyanzheng').style.color="red";
+                return false;
+            }
+            else{
+                $('showyanzheng').innerHTML="正确";
+                $('showyanzheng').style.color="red";
+                return true;
+            }
+            return true;
+        }
+    }
+    //验证简介
+    function checkmy(){
+        var my=$('my').value;
+        if(my==''){
+            $('showmy').innerHTML="简介不能为空";
+            $('showmy').style.color="red";
+            return false;
+        }
+        else{
+            var my=$('my').value;
+            var str=my.length;
+            if(str>25){
+                $('showmy').innerHTML="简介不能大于25个字";
+                $('showmy').style.color="red";
+                return false;
+            }
+            else{
+                var i=25-str;
+                $('showmy').innerHTML="还剩下"+i+"个字";
+                $('showmy').style.color="red";
+                return true;
+            }
+            return true;
+        }
+    }
+    //验证所有
+    function checkall(){
+        //验证性别
+        var sex=document.getElementsByName('sex');
+        var str=0;
+        for(var i=0;i<sex.length;i++){
+            if(sex[i].checked==true){
+                str=str+1;
+            }
+        }
+        if(str<1){
+            $('showsex').innerHTML="性别至少选一项";
+            $('showsex').style.color="red";
+            return false;
+        }
+        else{
+            $('showsex').innerHTML="正确";
+            $('showsex').style.color="red";
+
+
+        }
+        if(checkusername()&checkpwd()&checkapart()&checkA() &checkmy()){
+            return ture;
+        }
+        else{
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <script src="jian.js"></script>
+</head>
+<body>
+    <form action="jin.php" method="post" onsubmit="return checkall()">
+        <p>姓名:<input type="text" name="user" onblur="checkuser(this)"/><span name="sp1"></span></p>
+        <p>联系qq:<input type="text" name="QQ" onblur="checkQQ(this)"/><span name="sp2"></span></p>
+        <p>电子邮箱:<input type="text" name="email" onblur="checkemail(this)"/><span name="sp3"></span></p>
+        <p>常用电话:<input type="text" name="phone" onblur="checkphone(this)"/><span name="sp4"></span></p>
+        <p>需求填写:<textarea rows="5" cols="30" name="need" onkeyup="checkneed(this)"></textarea><span name="sp5"></span></p>
+        <p><input type="submit" value="提交信息"/><input type="reset" value="重新填写"/></p>
+    </form>
+<script>
+    //验证用户名
+    function checkuser(obj){
+        var user=$('user').value;
+        if(user==''){
+            $('sp1').innerHTML="名字不能为空";
+            $('sp1').style.color="red";
+            return false;
+        }
+        else{
+            var user=obj.value;
+            var tag=/^[\u4e00-\u9fa5]{2,3}$/;
+            if(!tag.test(user)){
+                $('sp1').innerHTML="姓名应为2-3个汉字";
+                $('sp1').style.color="red";
+                return false;
+            }
+            else{
+                $('sp1').innerHTML="ok";
+                $('sp1').style.color="red";
+                return true;
+            }
+            return true;
+        }
+    }
+    //验证QQ号码
+    function checkQQ(obj){
+        var qq=$('QQ').value;
+        if(qq==''){
+            $('sp2').innerHTML="请输入QQ号码";
+            $('sp2').style.color="red";
+            return false;
+        }
+        else{
+            $('sp2').innerHTML="ok";
+            $('sp2').style.color="red";
+            return true;
+        }
+    }
+    //验证电子邮箱
+    function checkemail(obj){
+        var email=$('email').value;
+        if(email==''){
+            $('sp3').innerHTML="请输入电子邮箱";
+            $('sp3').style.color="red";
+            return false;
+        }
+        else{
+            $('sp3').innerHTML="ok";
+            $('sp3').style.color="red";
+            return true;
+        }
+    }
+    //验证常用电话
+    function checkphone(obj){
+        var phone=$('phone').value;
+        if(phone==''){
+            $('sp4').innerHTML="请输入常用电话";
+            $('sp4').style.color="red";
+            return false;
+        }
+        else{
+            var phone=$('phone').value;
+            var tag=/^(\d{3}-\d{8})$/;
+            if(!tag.test(phone)){
+                $('sp4').innerHTML="格式不正确";
+                $('sp4').style.color="red";
+                return false;
+            }
+            else{
+                $('sp4').innerHTML="ok";
+                $('sp4').style.color="red";
+                return true;
+            }
+        }
+    }
+
+    //验证需求填写
+    function checkneed(obj){
+        var need=$('need').value;
+        if(need==''){
+            $('sp5').innerHTML="请输入需求";
+            $('sp5').style.color="red";
+            return false;
+        }
+        else {
+            var need=$('need').value;
+            var tag = /^[\u4e00-\u9fa5]{10,100}$/;
+            var long = need.length;
+            var i = 100 - long;
+            if (!tag.test(need)) {
+                $('sp5').innerHTML = "需求填写应为10-100个汉字";
+                $('sp5').style.color = "red";
+                return false;
+            }
+            else {
+                $('sp5').innerHTML = "还剩下"+i+"个字";
+                $('sp5').style.color = "red";
+                return true;
+
+            }
+        }
+
+    }
+    //验证提交信息
+    function checkall(){
+        if(checkuser($('user')) & checkQQ($('QQ')) & checkemail($('email')) & checkphone($('phone')) & checkneed($('need')))
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

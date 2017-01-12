@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <script src="kao.js"></script>
+</head>
+<body>
+<form action="kin.php" method="post" onsubmit="return checkall()">
+    <table>
+        <tr>
+            <td>手机/邮箱</td>
+            <td><input type="text" name="pe" onblur="checkpe(this)"/><span name="sp1"></span></td>
+        </tr>
+        <tr>
+            <td>密码</td>
+            <td><input type="password" name="pwd" onblur="checkpwd(this)"/><span name="sp2"></span></td>
+        </tr>
+        <tr>
+            <td>验证码</td>
+            <td><input type="text" name="yan" onblur="checkyan(this)"/>
+            <input type="text" id="ma"/>
+                <input type="button" value="换一张" onclick="lick()"/>
+                <span name="sp3"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="yue" onblur="checkyue(this)"/>阅读并接受百度用户协议<span name="sp4"></span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="注册"/></td>
+        </tr>
+    </table>
+</form>
+<script>
+    //验证手机号邮箱
+    function checkpe(obj){
+        var pe=$('pe').value;
+        if(pe==''){
+            $('sp1').innerHTML="不能为空";
+            $('sp1').style.color="red";
+            return false;
+        }
+        else{
+            var pe=$('pe').value;
+            var tag=/^(1[358]\d{9}|\w+@\w+\.(com|net|css))$/;
+            if(!tag.test(pe)){
+                $('sp1').innerHTML="格式不正确";
+                $('sp1').style.color="red";
+                return false;
+            }
+            else{
+                $('sp1').innerHTML="ok";
+                $('sp1').style.color="red";
+                return true;
+            }
+            return true;
+        }
+
+    }
+    //验证密码
+    function checkpwd(obj){
+        var pwd=$('pwd').value;
+        if(pwd==''){
+            $('sp2').innerHTML="不能为空";
+            $('sp2').style.color="red";
+            return false;
+        }else{
+            var pwd=$('pwd').value;
+            var tag=/^[0-9a-zA-Z]{6,14}$/;
+            if(tag.test(pwd)){
+                var tag1=/^(\d{6,14}|[a-zA-Z]{6,14})$/;
+                if(tag1.test(pwd)){
+                    $('sp2').innerHTML="密码强度弱";
+                    $('sp2').style.color="red";
+                    return false;
+                }else{
+                    $('sp2').innerHTML="密码强度强";
+                    $('sp2').style.color="red";
+                    return true;
+                }
+                return true;
+            }else{
+                $('sp2').innerHTML="密码6-14位，只能是数字字母";
+             return false;
+            }
+            return true;
+        }
+    }
+   //获取验证码
+    function lick(){
+        var str='';
+        for(var i=1;i<=4;i++){
+            var str=str+parseInt(Math.random()*9);
+            document.getElementById('ma').value=str;
+        }
+    }
+    //验证验证码
+    function checkyan(obj){
+        var yan=$('yan').value;
+        if(yan==''){
+            $('sp3').innerHTML="不能为空";
+            $('sp3').style.color="red";
+            return false;
+        }
+        else{
+            var yan=$('yan').value;
+            var ma=document.getElementById('ma').value;
+            if(yan!=ma){
+                $('sp3').innerHTML="不一致";
+                $('sp3').style.color="red";
+                return false;
+            }
+            else{
+                $('sp3').innerHTML="ok";
+                $('sp3').style.color="red";
+                return true;
+            }
+            return true;
+        }
+    }
+    //验证阅读
+    function checkyue(obj) {
+        var yue=$('yue').value;
+        if (yue == '') {
+            $('sp4').innerHTML = "不能不选";
+            $('sp4').style.color = "red";
+            return false;
+        }
+        else {
+            $('sp4').innerHTML = "ok";
+            $('sp4').style.color = "red";
+            return true;
+        }
+    }
+        function checkall(){
+            if (checkpe($('pe')) & checkpwd($('pwd')) & checkyan($('yan')) & checkyue($('yue'))) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+    }
+</script>
+
+</body>
+</html>

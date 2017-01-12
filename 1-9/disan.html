@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <script src="di.js"></script>
+</head>
+<body>
+  <form action="in.php" method="post" onsubmit="return checkall()">
+      <table>
+          <tr>
+              <td>账户基本信息</td>
+              <td></td>
+          </tr>
+          <tr>
+              <td>登入账号</td>
+              <td><input type="text" name="num" onblur="checknum(this)"/><span name="sp1"></span></td>
+          </tr>
+          <tr>
+              <td>昵称</td>
+              <td><input type="text" name="ni" onblur="checkni(this)"/><span name="sp2"></span></td>
+          </tr>
+          <tr>
+              <td>性别</td>
+              <td><input type="radio" name="sex" value="男" />男
+                  <input type="radio" name="sex" value="女" />女
+                  <input type="checkbox" name="bu" value="不公开"/>不公开
+                  <span name="sp3"></span>
+              </td>
+          </tr>
+          <tr>
+              <td>账户安全设置</td>
+              <td></td>
+          </tr>
+          <tr>
+              <td>登入密码</td>
+              <td><input type="password" name="pwd" onblur="checkpwd(this)"/><span name="sp4"></span></td>
+          </tr>
+          <tr>
+              <td>确认登入密码</td>
+              <td><input type="password" name="que" onblur="checkque(this)"/><span name="sp5"></span></td>
+          </tr>
+          <tr>
+              <td>真实姓名</td>
+              <td><input type="text" name="user" onblur="checkuser(this)"/><span name="sp6"></span></td>
+          </tr>
+          <tr>
+              <td>身份证号</td>
+              <td><input type="text" name="shen" onblur="checkshen(this)"/><span name="sp7"></span></td>
+          </tr>
+          <tr>
+              <td>邮箱地址</td>
+              <td><input type="text" name="email" onblur="checkemail(this)"/><span name="sp8"></span></td>
+          </tr>
+          <tr>
+              <td>验证码</td>
+              <td><input type="text" name="yan" onblur="checkyan(this)"/>
+                  <input type="text" id="ma"/>
+                  <input type="button" onclick="checkmm()" value="获取验证码"/>
+                  <span name="sp9"></span></td>
+          </tr>
+          <tr>
+              <td><input type="submit" value="免费注册"/></td>
+              <td>如果您已有账号，可<a href="#">直接登入</a></td>
+          </tr>
+
+      </table>
+  </form>
+<script>
+    //验证登录账号
+    function checknum(obj){
+        var num=$('num').value;
+        if(num==''){
+            $('sp1').innerHTML="登录账号不能为空";
+            $('sp1').style.color="red";
+            return false;
+        }
+        else{
+            var num=obj.value;
+            var tag=/^\w{5,10}$/i;
+            if(!tag.test(num)){
+                $('sp1').innerHTML="5-10个字符";
+                $('sp1').style.color="red";
+                return false;
+            }
+            else{
+                $('sp1').innerHTML="ok";
+                $('sp1').style.color="red";
+                return true;
+            }
+            return true;
+        }
+    }
+    //验证昵称
+    function checkni(obj){
+        var ni=$('ni').value;
+        if(ni==''){
+            $('sp2').innerHTML="输入有误";
+            $('sp2').style.color="red";
+            return false;
+        }
+        else{
+            $('sp2').innerHTML="ok";
+            $('sp2').style.color="red";
+            return true;
+        }
+    }
+    //验证登录密码
+    function checkpwd(obj){
+        var pwd=$('pwd').value;
+        if(pwd==''){
+            $('sp4').innerHTML="输入有误";
+            $('sp4').style.color="red";
+            return false;
+        }
+        else{
+            $('sp4').innerHTML="ok";
+            $('sp4').style.color="red";
+            return true;
+        }
+    }
+ //验证确认登录密码
+    function checkque(obj){
+        var pwd=$('pwd').value;
+        var que=$('que').value;
+        if(pwd!=que){
+            $('sp5').innerHTML="输入有误";
+            $('sp5').style.color="red";
+            return false;
+        }
+        else{
+            $('sp5').innerHTML="ok";
+            $('sp5').style.color="red";
+            return true;
+        }
+    }
+    //验证真实姓名
+    function checkuser(obj){
+        var user=$('user').value;
+        if(user==''){
+            $('sp6').innerHTML="输入有误";
+            $('sp6').style.color="red";
+            return false;
+        }
+        else{
+            $('sp6').innerHTML="ok";
+            $('sp6').style.color="red";
+            return true;
+        }
+    }
+    //验证身份证号
+    function checkshen(obj){
+        var shen=$('shen').value;
+        if(shen==''){
+            $('sp7').innerHTML="输入有误";
+            $('sp7').style.color="red";
+            return false;
+        }
+        else{
+            var shen=obj.value;
+            var tag=/^(\d{15}|\d{18})$/;
+            if(!tag.test(shen)){
+                $('sp7').innerHTML="必须15-18位";
+                $('sp7').style.color="red";
+                return false;
+            }
+            else{
+                $('sp7').innerHTML="ok";
+                $('sp7').style.color="red";
+                return true;
+            }
+        }
+    }
+    //验证邮箱
+    function checkemail(obj){
+        var email=$('email').value;
+        if(email==''){
+            $('sp8').innerHTML="输入有误";
+            $('sp8').style.color="red";
+            return false;
+        }
+        else{
+            var email=obj.value;
+            var tag=/^[\d+@\w+.(com|net|ntt)]{6,100}$/;
+            if(!tag.test(email)){
+                $('sp8').innerHTML="6-100个字符";
+                $('sp8').style.color="red";
+                return false;
+            }
+            else{
+                $('sp8').innerHTML="ok";
+                $('sp8').style.color="red";
+                return true;
+            }
+        }
+    }
+    //获取验证码
+    function checkmm(){
+        var str='';
+        for(var i=1;i<=4;i++){
+            str=str+parseInt(Math.random()*9);
+            document.getElementById('ma').value=str;
+        }
+    }
+    //验证验证码
+    function checkyan(obj){
+        var yan=$('yan').value;
+        if(yan==''){
+            $('sp9').innerHTML="输入有误";
+            $('sp9').style.color="red";
+            return false;
+        }
+        else{
+            var yan=$('yan').value;
+            var ma=document.getElementById('ma').value;
+            if(yan!=ma){
+                $('sp9').innerHTML="输入的验证码和获取的验证码不一致";
+                $('sp9').style.color="red";
+                return false;
+            }
+            else{
+                $('sp9').innerHTML="ok";
+                $('sp9').style.color="red";
+                return true;
+            }
+
+        }
+    }
+    function checkall(){
+        //验证性别
+        var sex=document.getElementsByName('sex');
+        var str='0';
+        for(var i=0;i<sex.length;i++){
+            if(sex[i].checked==true){
+                str++;
+            }
+        }
+        if(str<1){
+            $('sp3').innerHTML="至少选一项";
+            $('sp3').style.color="red";
+            return false;
+        }
+        else{ $('sp3').innerHTML="ok";
+            $('sp3').style.color="red";
+
+
+
+        }
+        if(checknum($('num')) & checkni($('ni')) & checkpwd($('pwd')) & checkque($('que')) & checkuser($('user')) & checkshen($('shen')) & checkemail($('email')) & checkyan($('yan'))){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <script src="public.js"></script>
+</head>
+<body>
+ <form action="zin.php" method="post" onsubmit="return checkall()">
+     <h1 align="center">欢迎注册学生信息</h1>
+     <table border="1" align="center">
+         <tr>
+             <td>姓名:</td>
+             <td><input type="text" name="user" onblur="checkuser(this)"/><span name="sp1"></span></td>
+         </tr>
+         <tr>
+             <td>密码:</td>
+             <td><input type="password" name="pwd" onblur="checkpwd(this)"/><span name="sp2"></span></td>
+         </tr>
+         <tr>
+             <td>确认密码:</td>
+             <td><input type="password" name="que" onblur="checkque(this)"/><span name="sp3"></span></td>
+         </tr>
+         <tr>
+             <td>性别:</td>
+             <td><input type="radio" name="sex" value="男"/>男
+                 <input type="radio" name="sex" value="女"/>女
+                 <span name="sp4"></span>
+             </td>
+         </tr>
+         <tr>
+             <td>邮箱:</td>
+             <td><input type="text" name="email" onblur="checkemail(this)"/><span name="sp5"></span></td>
+         </tr>
+         <tr>
+             <td>城市:</td>
+             <td><select name="city" onchange="checkcity(this)">
+                 <option value="">请选择</option>
+                 <option value="北京">北京</option>
+                 <option value="上海">上海</option>
+                 <option value="广州">广州</option>
+             </select>
+                 <span name="sp6"></span>
+             </td>
+         </tr>
+         <tr>
+             <td>手机号:</td>
+             <td><input type="text" name="phone" onblur="checkphone(this)"/><span name="sp7"></span></td>
+         </tr>
+         <tr>
+             <td>座机号:</td>
+             <td><input type="text" name="tel" onblur="checktel(this)"/><span name="sp8"></span></td>
+         </tr>
+         <tr>
+             <td>身份证号:</td>
+             <td><input type="text" name="num" onblur="checknum(this)"/><span name="sp9"></span></td>
+         </tr>
+         <tr>
+             <td>QQ号:</td>
+             <td><input type="text" name="qq" onblur="checkqq(this)"/><span name="sp10"></span></td>
+         </tr>
+         <tr>
+             <td>自我介绍:</td>
+             <td><textarea cols="10" rows="5" name="my" onkeyup="checkmy(this)"></textarea><span name="sp11"></span></span></td>
+         </tr>
+         <tr>
+             <td><input type="submit" value="登录"/></td>
+             <td><input type="reset" value="重置"/></td>
+         </tr>
+     </table>
+ </form>
+<script>
+    //验证用户名
+    function checkuser(obj){
+        var user=obj.value;
+        if(user==''){
+            $('sp1').innerHTML="名字不能为空";
+            $('sp1').style.color="red";
+            return false;
+        }
+        else{
+           var user=obj.value;
+            var tag=/^\D[0-9|a-z]{5,10}$/i;
+            if(!tag.test(user)){
+                $('sp1').innerHTML="必须由5到10位数字或字母组成，不允许数字开头";
+                $('sp1').style.color="red";
+                return false;
+            }
+            else{
+                $('sp1').innerHTML="对";
+                $('sp1').style.color="red";
+                return true;
+            }
+            return true;
+        }
+    }
+    //验证密码
+   function checkpwd(obj){
+        var pwd=obj.value;
+        if(pwd==''){
+            $('sp2').innerHTML="密码不能为空";
+            $('sp2').style.color="red";
+            return false;
+        }
+        else{
+            var pwd=obj.value;
+            var tag=/^\w{6,}$/i;
+            if(!tag.test(pwd)){
+                $('sp2').innerHTML="密码必须六位以上";
+                $('sp2').style.color="red";
+                return false;
+            }
+            else{
+                $('sp2').innerHTML="对";
+                $('sp2').style.color="red";
+                return true;
+            }
+            return true;
+        }
+
+    }
+
+    //验证确认密码
+    function checkque(obj){
+        var pwd=obj.value;
+        var que=obj.value;
+        if(pwd!=que){
+            $('sp3').innerHTML="密码和确认密码必须一致";
+            $('sp3').style.color="red";
+            return false;
+        }
+        else{
+            $('sp3').innerHTML="对";
+            $('sp3').style.color="red";
+            return true;
+        }
+
+    }
+    //验证邮箱
+    function checkemail(obj){
+        var email=obj.value;
+        if(email==''){
+            $('sp5').innerHTML="邮箱不能为空";
+            $('sp5').style.color="red";
+            return false;
+        }
+        else{
+            var email=obj.value;
+            var tag=/^\d+@\w+\.(com|cn|net)$/;
+            if(!tag.test(email)){
+                $('sp5').innerHTML="邮箱格式不正确";
+                $('sp5').style.color="red";
+                return false;
+            }
+            else{
+                $('sp5').innerHTML="对";
+                $('sp5').style.color="red";
+                return true;
+            }
+            return true;
+        }
+
+    }
+    //验证城市
+    function checkcity(obj){
+        var city=obj.value;
+        if(city==''){
+            $('sp6').innerHTML="城市不能为空";
+            $('sp6').style.color="red";
+            return false;
+        }
+        else{
+            $('sp6').innerHTML="对";
+            $('sp6').style.color="red";
+            return true;
+        }
+    }
+    //验证手机号
+    function checkphone(obj){
+        var phone=obj.value;
+        if(phone==''){
+            $('sp7').innerHTML="手机号不能为空";
+            $('sp7').style.color="red";
+            return false;
+        }
+        else{
+            var phone=obj.value;
+            var tag=/^1[358]\d{9}$/;
+            if(!tag.test(phone)){
+                $('sp7').innerHTML="手机号必须11位，以13，15，18开头";
+                $('sp7').style.color="red";
+                return false;
+            }
+            else{
+                $('sp7').innerHTML="对";
+                $('sp7').style.color="red";
+                return true;
+            }
+            return true;
+        }
+
+    }
+    //验证座机号
+    function checktel(obj){
+        var tel=obj.value;
+        if(tel==''){
+            $('sp8').innerHTML="座机号不能为空";
+            $('sp8').style.color="red";
+            return false;
+        }
+        else {
+            var tel=obj.value;
+        var tag=/^(\d{3}-\d{8})$/;
+        if(!tag.test(tel)){
+            $('sp8').innerHTML="必须是010-12345678格式,前面是三位的区号，后面是电话号，中间是-";
+            $('sp8').style.color="red";
+            return false;
+        }
+        else{
+            $('sp8').innerHTML="对";
+            $('sp8').style.color="red";
+            return true;
+        }
+            return true;
+        }
+    }
+    //验证身份证号
+    function checknum(obj){
+        var num=obj.value;
+        if(num==''){
+            $('sp9').innerHTML="身份证号不能为空";
+            $('sp9').style.color="red";
+            return false;
+        }
+        else {
+
+            var tag = /^(\d{15}|\d{18}|\d{17}.x)$/i;
+            if (!tag.test(num)) {
+                $('sp9').innerHTML = "必须是15或18位数字组成，18位最后一位可以是X";
+                $('sp9').style.color = "red";
+                return false;
+            }
+            else {
+                $('sp9').innerHTML = "对";
+                $('sp9').style.color = "red";
+                return true;
+            }
+            return true;
+        }
+    }
+    //验证QQ号
+    function checkqq(obj){
+        var qq=obj.value;
+        if(qq==''){
+            $('sp10').innerHTML="QQ号不能为空";
+            $('sp10').style.color="red";
+            return false;
+        }
+        else {
+            var qq = obj.value;
+            var tag = /^\d{8,11}$/;
+            if (!tag.test(qq)) {
+                $('sp10').innerHTML = "QQ号必须是8到11位数字组成";
+                $('sp10').style.color = "red";
+                return false;
+            }
+            else {
+                $('sp10').innerHTML = "对";
+                $('sp10').style.color = "red";
+                return true;
+            }
+            return true;
+        }
+    }
+    //验证简介
+    function checkmy(obj){
+        var my=obj.value;
+        if(my==''){
+            $('sp11').innerHTML="简介不能为空";
+            $('sp11').style.color="red";
+            return false;
+        }
+        else {
+            var my=obj.value;
+            var tag = /^[\u4e00-\u9fa5]+$/;
+            var str=20-my.length;
+            if (!tag.test(my)){
+                $('sp11').innerHTML = "必须在20字符以内";
+                $('sp11').style.color = "red";
+                return false;
+            }
+            else {
+                $('sp11').innerHTML = "还剩下"+str+"个字符";
+                $('sp11').style.color = "red";
+                return true;
+
+            }
+            return true;
+        }
+    }
+
+
+    function checkall(){
+    //验证性别
+        var sex=document.getElementsByName('sex');
+        var str=0;
+        for(var i=0;i<sex.length;i++){
+            if(sex[i].checked==true){
+                str=str+1;
+            }
+        }
+        if(str<1){
+            $('sp4').innerHTML="必选一项";
+            $('sp4').style.color="red";
+            return false;
+        }
+        else{
+            $('sp4').innerHTML="对";
+            $('sp4').style.color="red";
+        }
+        if(checkuser($('user'))&checkpwd($('pwd'))&checkque($('que'))&checkemail($('email'))&checkcity($('city')) &checkphone($('phone'))&checktel($('tel'))&checknum($('num'))&checkqq($('qq'))&checkmy($('my'))
+        ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

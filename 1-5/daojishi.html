@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+</head>
+<body onload="shijian()">
+<span style="font-size:50px; color: red">2017年来临倒计时:</span>
+<span id="s_sj" style="font-size:50px; color:orangered"></span><br />
+<span style="font-size:50px; color: blue">现在是:</span>
+<span id="ssj" style="font-size:50px; color:darkred;"></span>
+<script>
+    function shijian(){
+        var d;
+        d = new Date();
+        var year1 = d.getFullYear();
+        var month1 = d.getMonth()+1;
+        var date1 = d.getDate();
+        var hours1 = d.getHours();
+        var minutes1 = d.getMinutes();
+        var seconds1 = d.getSeconds();
+        var year = 2017-(d.getFullYear()+1);
+        var month = 12-(d.getMonth()+2);
+        var date = 29-d.getDate();
+        var hours = 24-d.getHours()+11;
+        var minutes = 59-d.getMinutes();
+        var seconds = 60-d.getSeconds();
+        if(hours>24){
+            hours=hours-24;
+            date=date+1;
+        }
+        document.getElementById('s_sj').innerHTML=year+'年'+month+'月'+date+'天'+hours+'小时'+minutes+'分钟'+seconds+'秒';
+        document.getElementById('ssj').innerHTML=year1+'年'+month1+'月'+date1+'日'+hours1+':'+minutes1+':'+seconds1;
+        setTimeout('shijian()',1000);
+    }
+</script>
+</body>
+</html>

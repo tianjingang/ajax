@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title></title>
+    <script type="text/javascript">
+        function $(id){
+            return document.getElementById(id);
+        }
+    </script>
+</head>
+<body style="background: url(11.jpg)">
+<center>
+    <h1 style="color:red">飙车俱乐部</h1>
+    <form method="post" action="admin.php" onsubmit="return checkAll()">
+        <table>
+            <tr>
+                <td>用户名</td>
+                <td><input type="text" id="uname" onblur="checkName()"><span id="showName"></span></td>
+            </tr>
+            <tr>
+                <td>密码</td>
+                <td><input type="password" id="pwd" onblur="checkPwd()"><span id="showpwd"></span></td>
+            </tr>
+            <tr>
+                <td>确认密码</td>
+                <td><input type="password" id="rpwd" onblur="checkRpwd()"><span id='showrpwd'></span></td>
+            </tr>
+            <tr>
+                <td>性别</td>
+                <td>
+                    <input type="radio" name="sex" value="男">男
+                    <input type="radio" name="sex" value="女">女
+                    <span id='showsex'></span>
+                </td>
+            </tr>
+            <tr>
+                <td>爱好</td>
+                <td>
+                    <input type="checkbox" name="hobby[]" value="吃饭">吃饭
+                    <input type="checkbox" name="hobby[]" value="睡觉">睡觉
+                    <input type="checkbox" name="hobby[]" value="打豆豆">打豆豆
+                    <span id='showbox'></span>
+                </td>
+            </tr>
+            <tr>
+                <td>部门</td>
+                <td>
+                    <select id="class" onchange="checkClass()">
+                        <option value="">--请选择--</option>
+                        <option value="外部">外部</option>
+                        <option value="内部">内部</option>
+                        <option value="局部">局部</option>
+                    </select>
+                    <span id='showclass'></span>
+                </td>
+            </tr>
+            <tr>
+                <td>个人简介</td>
+                <td><textarea id="content" rows="5" cols="16" onkeyup="checkCon()"></textarea>
+				<span id='showcon'></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="提交"></td>
+            </tr>
+        </table>
+    </form>
+</center>
+<script type="text/javascript">
+    //自定义函数验证姓名
+    function checkName(){
+        var username = $('uname').value;
+        if(username == ''){
+            $('showName').innerHTML = '不能为空';
+            $('showName').style.color = "red";
+            return false;
+        }else{
+            $('showName').innerHTML = '√';
+            $('showName').style.color = "green";
+            return true;
+        }
+    }
+    //验证密码
+    function checkPwd(){
+        var pwd = $('pwd').value;
+        if(pwd == ''){
+            $('showpwd').innerHTML = '不能为空';
+            $('showpwd').style.color = "red";
+            return false;
+        }else{
+            $('showpwd').innerHTML = '√';
+            $('showpwd').style.color = "green";
+            return true;
+        }
+    }
+//验证确认密码
+    function checkRpwd(){
+        var pwd = $('pwd').value;
+        var rpwd = $('rpwd').value;
+        if(rpwd == ''){
+            $('showrpwd').innerHTML = "确认密码不能为空";
+            $('showrpwd').style.color = "red";
+            return false;
+        }else{
+            if(pwd != rpwd){
+                $('showrpwd').innerHTML = "两次密码不一致";
+                $('showrpwd').style.color = "red";
+                return false;
+            }else{
+                $('showrpwd').innerHTML = "√";
+                $('showrpwd').style.color = "green";
+                return true;
+            }
+            return true;
+        }
+    }
+//验证爱好
+    function checkClass(){
+        var classs = $('hobby[]').value;
+        if(classs == ''){
+            $('showclass').innerHTML = "至少选择一项";
+            $('showclass').style.color = "red";
+            return false;
+        }else{
+            $('showclass').innerHTML = "√";
+            $('showclass').style.color = "green";
+            return true;
+        }
+    }
+//验证简介
+   function checkCon(){
+        var content = $('content').value;
+       if(content == ''){
+            $('showcon').innerHTML = "不能为空";
+            $('showcon').style.color = "red";
+            return false;
+        }else{
+           var content = $('content').value;
+            var str = content.length;
+            if(str>20){
+                $('showcon').innerHTML = "字数不能大于20字";
+                $('showcon').style.color = "red";
+                return false;
+            }else{
+                var count = 20-str;
+                $('showcon').innerHTML = "还可以写"+count+"字";
+                $('showcon').style.color = "green";
+                return true;
+            }
+            return true;
+        }
+    }
+
+    function checkAll(){
+        //验证性别
+        var sex = document.getElementsByName('sex');
+        var str = 0;
+        for(var i=0;i<sex.length;i++){
+            if(sex[i].checked == true){
+                str = str+1;
+            }
+        }
+        if(str<1){
+            $('showsex').innerHTML = "至少选择一项";
+            $('showsex').style.color = 'red';
+            return false;
+        }else{
+            $('showsex').innerHTML = "√";
+            $('showsex').style.color = 'green';
+        }
+
+        //验证爱好
+        var hobby = document.getElementsByName('hobby[]');
+        var num = 0;
+        for(var i=0;i<hobby.length;i++){
+            if(hobby[i].checked == true){
+                num = num+1;
+            }
+        }
+
+        if(num<2){
+            $('showbox').innerHTML = "至少选择2项";
+            $('showbox').style.color = 'red';
+            return false;
+        }else{
+            $('showbox').innerHTML = "√";
+            $('showbox').style.color = 'green';
+        }
+        if(checkName()&checkPwd()&checkRpwd()&checkClass()&checkCon()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+</body>
+
+
+</html>
